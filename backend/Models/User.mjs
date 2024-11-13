@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 import validator from "validator";
 const userSchema = new mongoose.Schema(
   {
-    role: { type: String, required: true, default: "student" }, // educator OR stduent
-    isRoleModifictionPending: { type: Boolean, required: true, default: false },
+    role: { type: String, required: true, default: "customer" }, // customer
     username: {
       type: String,
       maxlength: 50,
@@ -26,7 +25,6 @@ const userSchema = new mongoose.Schema(
     },
     mobile: {
       type: String,
-
       validate: {
         validator: function (value) {
           return validator.isMobilePhone(value) && value.length === 10;
@@ -37,7 +35,6 @@ const userSchema = new mongoose.Schema(
     password: { type: String },
     gender: {
       type: String,
-
       maxlength: 6,
       match: [
         /^[a-zA-Z]+$/,
@@ -45,21 +42,6 @@ const userSchema = new mongoose.Schema(
       ],
     },
     dateOfBirth: { type: Date },
-    about: {
-      type: String,
-
-      maxlength: 100,
-      match: [
-        /^[a-zA-Z0-9\-\.\s]+$/,
-        "Invalid about. Only alphanumeric characters, underscores, hyphens and dots are allowed.",
-      ],
-    },
-    coursesEnrolledIn: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: "courses",
-      },
-    ],
     passwordResetToken: { type: String },
     googleProfileImage: { type: String },
     profileImage: { type: Map, of: String },

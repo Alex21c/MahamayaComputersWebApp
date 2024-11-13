@@ -90,6 +90,8 @@ app.get(
     // Send Set-Cookie header
     res.cookie("jwt", token, cookiesOptions);
 
+    // if
+
     if (req?.user?.isRoleModifictionPending) {
       // Redirect to modify-role with token
       res.redirect(`${process.env.BASE_URL_FRONT_END}/modify-role`);
