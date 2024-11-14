@@ -32,6 +32,7 @@ mongoose
     console.log("Connection Established with Database!");
   })
   .catch((err) => {
+    console.log(err);
     console.log("Unable to connect to DB!");
     console.log("Exiting...");
     process.exit(1);
@@ -80,7 +81,10 @@ app.get(
 
 app.get(
   "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/" }),
+  passport.authenticate("google", {
+    failureRedirect:
+      process.env.BASE_URL_FRONT_END + "/" + process.env.FRONT_END_LOGIN_PAGE,
+  }),
   (req, res) => {
     // After successful authentication, generate JWT
     const token = jwt.sign({ _id: req.user._id }, process.env.JWT_PRIVATE_KEY, {

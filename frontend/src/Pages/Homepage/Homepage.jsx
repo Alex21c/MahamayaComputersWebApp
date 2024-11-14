@@ -1,4 +1,4 @@
-import GoogleAuthButton from "../../Components/GoogleAuthButton/GoogleAuthButton";
+import Header from "../../Components/Header/Header";
 import { useEffect } from "react";
 import { genLinkTag } from "../../Utils/utils";
 export default function Homepage() {
@@ -8,8 +8,8 @@ export default function Homepage() {
 
   return (
     <div>
+      <Header />
       Homepage Mahamaya Computers !
-      <GoogleAuthButton />
       <footer>
         {genLinkTag("/privacy-policy", "Privacy-policy")}
         <br />
