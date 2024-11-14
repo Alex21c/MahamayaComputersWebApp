@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Homepage from "./Pages/Homepage/Homepage";
 import NotFound from "./Pages/NotFound/NotFound";
+import Profile from "./Pages/Profile/Profile";
 import TermsOfService from "./Pages/TermsOfService/TermsOfService";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
@@ -10,6 +11,11 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Homepage />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
     errorElement: <NotFound />,
   },
 
