@@ -1,3 +1,4 @@
+import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
 import { useEffect } from "react";
 import { genLinkTag } from "../../Utils/utils";
@@ -10,11 +11,7 @@ export default function Homepage() {
     <div>
       <Header />
       Homepage Mahamaya Computers !
-      <footer>
-        {genLinkTag("/privacy-policy", "Privacy-policy")}
-        <br />
-        {genLinkTag("/terms-of-service", "Terms-of-service")}
-      </footer>
+      <Footer />
     </div>
   );
 }

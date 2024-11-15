@@ -1,3 +1,4 @@
+import Footer from "../../Components/Footer/Footer";
 import GoogleAuthButton from "../../Components/GoogleAuthButton/GoogleAuthButton";
 import Header from "../../Components/Header/Header";
 export default function Login() {
@@ -5,6 +6,7 @@ export default function Login() {
     <div>
       <Header />
       <GoogleAuthButton />
+      <Footer />
     </div>
   );
 }

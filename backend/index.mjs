@@ -8,8 +8,9 @@ import cors from "cors";
 import fs from "fs";
 import session from "express-session";
 import cookieParser from "cookie-parser";
-import { cookiesOptions } from "./Utils/Misc.mjs";
+// import { cookiesOptions } from "./Utils/Misc.mjs";
 import { Resend } from "resend";
+import AuthRouter from "./Routes/AuthRoutes.mjs";
 
 // Check if the upload directory exists, if not, create it
 const uploadDir = "Uploads";
@@ -74,30 +75,31 @@ app.use(
 // linking passport
 app.use(passport.initialize());
 // Initiate Google authentication
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
+app.use("/auth", AuthRouter);
+// app.get(
+//   "/auth/google",
+//   passport.authenticate("google", { scope: ["profile", "email"] })
+// );
 
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    failureRedirect:
-      process.env.BASE_URL_FRONT_END + "/" + process.env.FRONT_END_LOGIN_PAGE,
-  }),
-  (req, res) => {
-    // After successful authentication, generate JWT
-    const token = jwt.sign({ _id: req.user._id }, process.env.JWT_PRIVATE_KEY, {
-      expiresIn: "1d",
-    });
+// app.get(
+//   "/auth/google/callback",
+//   passport.authenticate("google", {
+//     failureRedirect:
+//       process.env.BASE_URL_FRONT_END + "/" + process.env.FRONT_END_LOGIN_PAGE,
+//   }),
+//   (req, res) => {
+//     // After successful authentication, generate JWT
+//     const token = jwt.sign({ _id: req.user._id }, process.env.JWT_PRIVATE_KEY, {
+//       expiresIn: "1d",
+//     });
 
-    // Send Set-Cookie header
-    res.cookie("jwt", token, cookiesOptions);
+//     // Send Set-Cookie header
+//     res.cookie("jwt", token, cookiesOptions);
 
-    // if
-    res.redirect(`${process.env.BASE_URL_FRONT_END}/profile`);
-  }
-);
+//     // if
+//     res.redirect(`${process.env.BASE_URL_FRONT_END}/profile`);
+//   }
+// );
 
 // Handle the Google callback
 const resend = new Resend(process.env.API_KEY_RESEND);

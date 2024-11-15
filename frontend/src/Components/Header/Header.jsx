@@ -1,9 +1,15 @@
+import { useSelector } from "react-redux";
 import { genLinkTag } from "../../Utils/utils";
 export default function Header() {
-  // get login info from context
+  const User = useSelector((store) => store.User);
+  // console.log(User);
   return (
     <header>
-      {genLinkTag("/login", "login")} {genLinkTag("/", "homepage")}
+      {User?.isLoggedIn
+        ? genLinkTag("/logout", "logout")
+        : genLinkTag("/login", "login")}
+      <br />
+      {genLinkTag("/", "homepage")}
     </header>
   );
 }

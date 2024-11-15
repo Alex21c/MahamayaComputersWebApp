@@ -1,37 +1,43 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-let defaultInitialState = {
-  userData: {
-    isUserLoggedIn: false,
-  },
-};
+// Retrieve user data from local storage
 const userDataFromLocalStorage = localStorage.getItem(
-  process.env.REACT_APP_PREFIX_LOCALSTORAGE + "userData"
+  process.env.REACT_APP_PREFIX_LOCALSTORAGE + "isLoggedIn"
 );
 
-export const userSlice = createSlice({
-  name: "user",
-  initialState: userDataFromLocalStorage
+// Define the initial state for the user slice
+const initialState = {
+  isLoggedIn: userDataFromLocalStorage
     ? JSON.parse(userDataFromLocalStorage)
-    : defaultInitialState,
+    : false,
+};
+
+export const userSlice = createSlice({
+  name: "User",
+  initialState, // Properly assign the initial state
   reducers: {
-    setUserData: (state, action) => {
+    markUserAsLoggedIn: (state, action) => {
+      // Update localStorage and state
       localStorage.setItem(
-        process.env.REACT_APP_PROJECT_NAME + "userData",
-        JSON.stringify(action.payload || {})
+        process.env.REACT_APP_PROJECT_NAME + "isLoggedIn",
+        JSON.stringify(true)
       );
-      state.data = action.payload || {};
+      state.isLoggedIn = true;
     },
-    clearUserData: (state) => {
-      localStorage.removeItem(process.env.REACT_APP_PROJECT_NAME + "userData");
-      state.data = {};
+    markUserAsLoggedOut: (state) => {
+      // Clear localStorage and reset state
+      localStorage.setItem(
+        process.env.REACT_APP_PROJECT_NAME + "isLoggedIn",
+        JSON.stringify(false)
+      );
+      state.isLoggedIn = false;
     },
   },
 });
 
-// exporting actions
-export const { setUserData, clearUserData } = userSlice.actions;
+// Exporting actions
+export const { markUserAsLoggedIn, markUserAsLoggedOut } = userSlice.actions;
 
-// exporting reducers
+// Exporting reducer
 const reducerUserSlice = userSlice.reducer;
 export default reducerUserSlice;

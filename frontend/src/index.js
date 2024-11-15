@@ -10,39 +10,61 @@ import Profile from "./Pages/Profile/Profile";
 import TermsOfService from "./Pages/TermsOfService/TermsOfService";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Homepage />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "/profile",
-    element: <Profile />,
-    errorElement: <NotFound />,
-  },
+import AfterAuthRedirect from "./Pages/AfterAuthRedirect/AfterAuthRedirect";
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Homepage />,
+      errorElement: <NotFound />,
+    },
+    {
+      path: "/after-auth-redirect",
+      element: <AfterAuthRedirect />,
+      errorElement: <NotFound />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
+      errorElement: <NotFound />,
+    },
+    {
+      path: "/profile",
+      element: <Profile />,
+      errorElement: <NotFound />,
+    },
 
+    {
+      path: "/privacy-policy",
+      element: <PrivacyPolicy />,
+      errorElement: <NotFound />,
+    },
+    {
+      path: "/terms-of-service",
+      element: <TermsOfService />,
+      errorElement: <NotFound />,
+    },
+  ],
   {
-    path: "/privacy-policy",
-    element: <PrivacyPolicy />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "/terms-of-service",
-    element: <TermsOfService />,
-    errorElement: <NotFound />,
-  },
-]);
+    future: {
+      v7_relativeSplatPath: true,
+      v7_fetcherPersist: true,
+      v7_normalizeFormMethod: true,
+      v7_partialHydration: true,
+      v7_skipActionErrorRevalidation: true,
+    },
+  }
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <RouterProvider router={router} />
+    <RouterProvider
+      router={router}
+      future={{
+        v7_startTransition: true,
+      }}
+    />
   </Provider>
 );
 
