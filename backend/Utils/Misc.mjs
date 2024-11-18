@@ -4,7 +4,7 @@ export const cookiesOptions = {
     signed: true,
     sameSite: process.env.BASE_URL_FRONT_END.includes("localhost")
       ? true
-      : "None",
+      : "none",
     secure: process.env.BASE_URL_FRONT_END.includes("localhost") ? false : true,
     path: "/",
   },

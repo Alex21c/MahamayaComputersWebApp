@@ -42,7 +42,7 @@ mongoose
 // cors
 const corsOptions = {
   origin: (origin, callback) => {
-    console.log(origin);
+    // console.log(origin);
     if (
       !origin ||
       origin.includes("http://localhost:3000") ||
