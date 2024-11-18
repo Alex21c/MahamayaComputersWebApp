@@ -35,7 +35,7 @@ const googleCallback = (req, res, next) => {
     });
 
     // Send JWT as a cookie
-    res.cookie("jwt", token, cookiesOptions);
+    res.cookie("jwt", token, cookiesOptions.login);
 
     // Redirect to profile or dashboard after successful login
     res.redirect(
@@ -44,9 +44,18 @@ const googleCallback = (req, res, next) => {
   })(req, res, next);
 };
 
+const logout = async (req, res) => {
+  res.clearCookie("jwt", cookiesOptions.logout);
+  res.json({
+    success: true,
+    message: "Successfully logged out !",
+  });
+};
+
 const AuthController = {
   google,
   googleCallback,
+  logout,
 };
 
 export default AuthController;

@@ -11,6 +11,7 @@ import TermsOfService from "./Pages/TermsOfService/TermsOfService";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
 import AfterAuthRedirect from "./Pages/AfterAuthRedirect/AfterAuthRedirect";
+import Logout from "./Pages/Logout/Logout";
 const router = createBrowserRouter(
   [
     {
@@ -21,6 +22,11 @@ const router = createBrowserRouter(
     {
       path: "/after-auth-redirect",
       element: <AfterAuthRedirect />,
+      errorElement: <NotFound />,
+    },
+    {
+      path: "/logout",
+      element: <Logout />,
       errorElement: <NotFound />,
     },
     {

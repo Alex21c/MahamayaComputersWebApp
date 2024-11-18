@@ -102,27 +102,27 @@ app.use("/auth", AuthRouter);
 // );
 
 // Handle the Google callback
-const resend = new Resend(process.env.API_KEY_RESEND);
-async function sendMail() {
-  const { data, error } = await resend.emails.send({
-    from: "Mahamaya Computers <no-reply@mahamayacomputers.com>",
-    to: ["aasalex21c@gmail.com"],
-    subject: "Testing email",
-    html: "<strong>It works!</strong>",
-  });
+// const resend = new Resend(process.env.API_KEY_RESEND);
+// async function sendMail() {
+//   const { data, error } = await resend.emails.send({
+//     from: "Mahamaya Computers <no-reply@mahamayacomputers.com>",
+//     to: ["aasalex21c@gmail.com"],
+//     subject: "Testing email",
+//     html: "<strong>It works!</strong>",
+//   });
 
-  if (error) {
-    return console.error({ error });
-  }
+//   if (error) {
+//     return console.error({ error });
+//   }
 
-  console.log({ data });
-}
+//   console.log({ data });
+// }
 
-// Routes
-app.get("/api/v1/send-email", (req, res, next) => {
-  sendMail();
-  res.send("wait");
-});
+// // Routes
+// app.get("/api/v1/send-email", (req, res, next) => {
+//   sendMail();
+//   res.send("wait");
+// });
 
 // Error handling middleware
 app.use((err, req, res, next) => {

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Retrieve user data from local storage
 const userDataFromLocalStorage = localStorage.getItem(
-  process.env.REACT_APP_PREFIX_LOCALSTORAGE + "isLoggedIn"
+  process.env.REACT_APP_PROJECT_NAME + "isLoggedIn"
 );
 
 // Define the initial state for the user slice
