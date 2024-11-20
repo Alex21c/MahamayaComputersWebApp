@@ -2,10 +2,10 @@ export const cookiesOptions = {
   commonOptions: {
     httpOnly: true,
     signed: true,
+    secure: process.env.BASE_URL_FRONT_END.includes("localhost") ? false : true,
     sameSite: process.env.BASE_URL_FRONT_END.includes("localhost")
       ? true
       : "none",
-    secure: process.env.BASE_URL_FRONT_END.includes("localhost") ? false : true,
     domain: process.env.BASE_URL_FRONT_END.includes("localhost")
       ? "localhost"
       : "www.mahamayacomputers.com",

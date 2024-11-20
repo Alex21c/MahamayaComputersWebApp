@@ -70,7 +70,11 @@ app.use(
     secret: process.env.JWT_PRIVATE_KEY,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }, // Set to true if using HTTPS
+    cookie: {
+      secure: process.env.BASE_URL_FRONT_END.includes("localhost")
+        ? false
+        : true,
+    }, // Set to true if using HTTPS
   })
 );
 
