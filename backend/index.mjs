@@ -46,6 +46,7 @@ const corsOptions = {
     if (
       !origin ||
       origin.includes("http://localhost:3000") ||
+      origin.includes("www.mahamayacomputers.com") ||
       origin.includes(process.env?.BASE_URL_FRONT_END)
     ) {
       callback(null, true);
