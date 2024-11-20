@@ -8,7 +8,7 @@ export const cookiesOptions = {
     secure: process.env.BASE_URL_FRONT_END.includes("localhost") ? false : true,
     domain: process.env.BASE_URL_FRONT_END.includes("localhost")
       ? "localhost"
-      : ".mahamayacomputers.com",
+      : "mahamayacomputers.com",
     path: "/",
   },
 };
