@@ -56,7 +56,7 @@ const corsOptions = {
     }
   },
   credentials: true,
-  allowedHeaders: ["Authorization", "Content-Type"],
+  allowedHeaders: ["Authorization", "Content-Type", "Set-Cookie"],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   optionsSuccessStatus: 200,
 };
