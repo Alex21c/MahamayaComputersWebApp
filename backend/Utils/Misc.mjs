@@ -6,7 +6,6 @@ export const cookiesOptions = {
       ? true
       : "none",
     secure: process.env.BASE_URL_FRONT_END.includes("localhost") ? false : true,
-    domain: "www.mahamayacomputers.com", // Add domain explicitly for production
     path: "/",
   },
 };
